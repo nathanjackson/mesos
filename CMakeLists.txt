@@ -22,6 +22,12 @@ else ()
   cmake_minimum_required(VERSION 3.8.0)
 endif ()
 
+# Disable in-source build.
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" insource)
+if (insource)
+  message(FATAL_ERROR "In-source builds are not supported.")
+endif ()
+
 project(Mesos)
 set(MESOS_MAJOR_VERSION 1)
 set(MESOS_MINOR_VERSION 5)
